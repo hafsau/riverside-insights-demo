@@ -1,0 +1,290 @@
+@import "tailwindcss";
+
+/* Riverside's brand face, served by riversideinsights.com (CORS-open).
+   local() first, so machines with Office's Aptos skip the download. */
+@font-face { font-family: "Aptos"; font-weight: 400; font-display: swap; src: local("Aptos"), url("https://riversideinsights.com/hubfs/Aptos.ttf") format("truetype"); }
+@font-face { font-family: "Aptos"; font-weight: 600; font-display: swap; src: local("Aptos SemiBold"), local("Aptos-SemiBold"), url("https://riversideinsights.com/hubfs/Aptos-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Aptos"; font-weight: 700; font-display: swap; src: local("Aptos Bold"), local("Aptos-Bold"), url("https://riversideinsights.com/hubfs/Aptos-Bold.ttf") format("truetype"); }
+@font-face { font-family: "Aptos"; font-weight: 800; font-display: swap; src: local("Aptos ExtraBold"), local("Aptos-ExtraBold"), url("https://riversideinsights.com/hubfs/Aptos-ExtraBold.ttf") format("truetype"); }
+
+/*
+ * Reach Foundations: tokens, from riversideinsights.com.
+ *
+ * Riverside's site: Aptos throughout (headings 800 at 1.2, body 18px at 1.3–1.4),
+ * black headings and body, gray #575756 for secondary text, blue #0380C4 links
+ * and outline buttons, deep navy #003360 and green #4B8316 filled buttons, leaf
+ * #80C342 accents, #E4F5FF tints, 25px pill buttons, and a navy #102D7B band.
+ * The logo is #0282C6 and #80C342.
+ *
+ * Where the brand value fails WCAG AA for its job, the system keeps the brand
+ * value for fills and adds a text-safe sibling. All ratios are on /system.
+ *  - Blue #0380C4 is 4.30:1 on white: fills, focus ring, 24px+ text. Text uses --link (#036CA6, 5.68:1).
+ *  - Leaf #80C342 is 2.14:1: fills on navy (5.82:1) and accents only.
+ *  - Green #4B8316 is 4.61:1 on white but 4.39:1 on the page tint: buttons and
+ *    fills; small green text uses --leaf-ink (#3F7A12).
+ *  - Borders on controls use --line-strong (#7D8792, 3.65:1) for WCAG 1.4.11.
+ *
+ * Batteries reuse the brand's three hues, each with a shape (V ● blue,
+ * Q ■ green, N ▲ navy), so no chart depends on colour.
+ */
+:root {
+  color-scheme: light;
+
+  --bg: #f5fafe;
+  --raised: #ffffff;
+  --sunken: #eef6fc;
+  --line: #d1d6dc;
+  --line-strong: #7d8792;
+
+  --ink: #000000;
+  --body: #1a1a1a;
+  --muted: #575756;
+  --dim: #666666;
+
+  --navy: #003360;
+  --navy-deep: #00264a;
+  --band: #102d7b;
+  --brand: #0380c4;
+  --logo-blue: #0282c6;
+  --link: #036ca6;
+  --leaf: #80c342;
+  --green: #4b8316;
+  --leaf-ink: #3f7a12;
+  --brand-soft: #e4f5ff;
+
+  --v: #0380c4;
+  --q: #4b8316;
+  --n: #003360;
+  --v-soft: #e4f5ff;
+  --q-soft: #eef7e6;
+  --n-soft: #e5ecf3;
+
+  --good: #2f6a0f;
+  --good-soft: #eef7e6;
+  --warn: #8a4b00;
+  --warn-soft: #fff4e5;
+  --bad: #b42318;
+  --bad-soft: #fef3f2;
+
+  --focus: #0380c4;
+  --radius-pill: 25px;
+  --shadow-card: 0 1px 2px rgb(0 51 96 / 0.06), 0 2px 8px rgb(0 51 96 / 0.06);
+  --shadow-float: 0 12px 32px rgb(0 51 96 / 0.14), 0 2px 6px rgb(0 51 96 / 0.08);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-raised: var(--raised);
+  --color-sunken: var(--sunken);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --color-dim: var(--dim);
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-band: var(--band);
+  --color-green: var(--green);
+  --color-brand: var(--brand);
+  --color-link: var(--link);
+  --color-leaf: var(--leaf);
+  --color-leaf-ink: var(--leaf-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-v: var(--v);
+  --color-q: var(--q);
+  --color-n: var(--n);
+  --color-v-soft: var(--v-soft);
+  --color-q-soft: var(--q-soft);
+  --color-n-soft: var(--n-soft);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --font-sans: "Aptos", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "Aptos Mono", ui-monospace, "SF Mono", Consolas, monospace;
+  --font-easy: var(--font-atkinson), "Aptos", sans-serif;
+  --shadow-card: var(--shadow-card);
+  --shadow-float: var(--shadow-float);
+}
+
+html {
+  background: var(--bg);
+  scroll-padding-top: 88px; /* keeps focus clear of the sticky header (WCAG 2.4.11) */
+}
+body {
+  background: var(--bg);
+  font-size: 1.0625rem; /* 17px; riversideinsights.com sets 16–18px */
+  line-height: 1.4;
+  font-feature-settings: "tnum" 0;
+}
+
+/* One focus treatment everywhere: 3px brand ring with a white halo, so it
+   reads on navy, white and tinted surfaces alike (WCAG 2.4.7, 2.4.13). */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff;
+  border-radius: 4px;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--link);
+}
+
+.display {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.prose-reach p {
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.link {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.link:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Student player themes, set by accommodations. */
+.player[data-contrast="high"] {
+  --raised: #ffffff;
+  --sunken: #ffffff;
+  --line: #000000;
+  --line-strong: #000000;
+  --ink: #000000;
+  --body: #000000;
+  --muted: #000000;
+  --dim: #000000;
+  --brand-soft: #ffffff;
+}
+.player[data-contrast="high"] .choice {
+  border-width: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+[data-motion="reduced"] *,
+[data-motion="reduced"] *::before,
+[data-motion="reduced"] *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.4s var(--ease-out) both;
+}
+
+/* ---------- Accessibility Lens ----------
+   A reviewer's tool, not a user feature: it makes the semantics visible. */
+
+/* Landmarks */
+[data-lens~="landmarks"] :is(header, nav, main, aside, footer, [role="region"], section[aria-labelledby], section[aria-label], form[aria-label]) {
+  outline: 2px dashed #7c3aed !important;
+  outline-offset: -2px;
+  position: relative;
+}
+[data-lens~="landmarks"] :is(header, nav, main, aside, footer, [role="region"], section[aria-labelledby], section[aria-label], form[aria-label])::before {
+  content: attr(data-lens-name);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  background: #7c3aed;
+  color: #fff;
+  font: 700 11px/1.2 ui-monospace, "SF Mono", Consolas, monospace;
+  padding: 2px 6px;
+  border-bottom-right-radius: 4px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Headings */
+[data-lens~="headings"] :is(h1, h2, h3, h4)::after {
+  content: attr(data-lens-h);
+  display: inline-block;
+  margin-left: 0.5em;
+  vertical-align: middle;
+  background: #0b1a3a;
+  color: #fff;
+  font: 700 11px/1.4 ui-monospace, "SF Mono", Consolas, monospace;
+  letter-spacing: 0;
+  text-transform: none;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* WCAG 1.4.12 text spacing stress test */
+[data-lens~="spacing"] * {
+  line-height: 1.5 !important;
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+}
+[data-lens~="spacing"] p {
+  margin-bottom: 2em !important;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+  @page {
+    size: letter;
+    margin: 0.5in;
+  }
+}
+
+/* Vision simulation. Applied to the app shell only, so the Lens UI stays legible. */
+[data-vision="protanopia"] #app { filter: url(#protanopia); }
+[data-vision="deuteranopia"] #app { filter: url(#deuteranopia); }
+[data-vision="tritanopia"] #app { filter: url(#tritanopia); }
+[data-vision="achromatopsia"] #app { filter: url(#achromatopsia); }
+[data-vision="low-acuity"] #app { filter: url(#low-acuity); }
+
+/* Scroll containers own their absolutely positioned children (e.g. .sr-only
+   text in table cells), so hidden text can't widen the page. */
+.overflow-x-auto {
+  position: relative;
+}

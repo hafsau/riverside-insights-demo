@@ -1,0 +1,67 @@
+/*
+ * Draft Accessibility Conformance Report rows (VPAT 2.5 style, WCAG 2.2 A/AA).
+ * Statuses describe this concept build, honestly. "Partially supports" and
+ * "Not yet verified" rows are the backlog, not a footnote.
+ */
+
+export type Status = "Supports" | "Partially supports" | "Not applicable" | "Not yet verified";
+
+export type Criterion = { id: string; name: string; level: "A" | "AA"; status: Status; remarks: string };
+
+export const ACR: Criterion[] = [
+  { id: "1.1.1", name: "Non-text Content", level: "A", status: "Supports", remarks: "Every item picture has a text alternative that describes without solving. Charts have a text summary and a table view. Decorative SVG is aria-hidden." },
+  { id: "1.2.1", name: "Audio-only and Video-only (Prerecorded)", level: "A", status: "Not applicable", remarks: "No prerecorded media. Spoken prompts are synthesized from text that is always on screen." },
+  { id: "1.2.2", name: "Captions (Prerecorded)", level: "A", status: "Not applicable", remarks: "No video. Every spoken prompt has an on-screen caption anyway." },
+  { id: "1.2.3", name: "Audio Description or Media Alternative", level: "A", status: "Not applicable", remarks: "No video." },
+  { id: "1.2.4", name: "Captions (Live)", level: "AA", status: "Not applicable", remarks: "No live media." },
+  { id: "1.2.5", name: "Audio Description (Prerecorded)", level: "AA", status: "Not applicable", remarks: "No video." },
+  { id: "1.3.1", name: "Info and Relationships", level: "A", status: "Supports", remarks: "Landmarks, heading hierarchy, table headers with scope, fieldset/legend for choice groups, and aria-sort on sortable columns." },
+  { id: "1.3.2", name: "Meaningful Sequence", level: "A", status: "Supports", remarks: "DOM order matches visual order on every layout." },
+  { id: "1.3.3", name: "Sensory Characteristics", level: "A", status: "Supports", remarks: "Prompts name what to look at (“top row”, “the bottom one”) and also describe it in text alternatives." },
+  { id: "1.3.4", name: "Orientation", level: "AA", status: "Supports", remarks: "Works in portrait and landscape. Tested at phone and tablet widths." },
+  { id: "1.3.5", name: "Identify Input Purpose", level: "AA", status: "Not applicable", remarks: "No personal-data fields in this build. Sign-in will use autocomplete tokens." },
+  { id: "1.4.1", name: "Use of Color", level: "A", status: "Supports", remarks: "Batteries use hue and shape. Flags use icon and text. Selected choices use a check, an inset border and a tint." },
+  { id: "1.4.2", name: "Audio Control", level: "A", status: "Supports", remarks: "Read-aloud stops on navigation and can be replayed. No audio plays for more than 3 seconds without a student action, except for assigned read-aloud, which a proctor can turn off." },
+  { id: "1.4.3", name: "Contrast (Minimum)", level: "AA", status: "Supports", remarks: "All text pairings are computed on /system. Brand blue (4.30:1) is restricted to 24px+ text and fills." },
+  { id: "1.4.4", name: "Resize Text", level: "AA", status: "Supports", remarks: "Text scales to 200% in the browser without loss. The player adds its own 150% and 200% magnification." },
+  { id: "1.4.5", name: "Images of Text", level: "AA", status: "Supports", remarks: "No images of text. Score codes are live text." },
+  { id: "1.4.10", name: "Reflow", level: "AA", status: "Partially supports", remarks: "Pages reflow at 320px. Wide data tables (roster, accommodations matrix) scroll horizontally inside their container, which the exception for two-dimensional data allows; a card layout for small screens is in the backlog." },
+  { id: "1.4.11", name: "Non-text Contrast", level: "AA", status: "Supports", remarks: "Control borders (--line-strong on white) and the focus ring meet 3:1. Figure items use solid black strokes." },
+  { id: "1.4.12", name: "Text Spacing", level: "AA", status: "Supports", remarks: "Verified with the Lens's text-spacing stress test on every page." },
+  { id: "1.4.13", name: "Content on Hover or Focus", level: "AA", status: "Supports", remarks: "No custom tooltips. The Lens panel is dismissable with Escape and persists while hovered." },
+  { id: "2.1.1", name: "Keyboard", level: "A", status: "Supports", remarks: "Every action is keyboard-operable. The full student session is covered by an automated keyboard-only test." },
+  { id: "2.1.2", name: "No Keyboard Trap", level: "A", status: "Supports", remarks: "No traps. Switch scanning can be stopped with any switch." },
+  { id: "2.1.4", name: "Character Key Shortcuts", level: "A", status: "Not applicable", remarks: "No single-key shortcuts." },
+  { id: "2.2.1", name: "Timing Adjustable", level: "A", status: "Supports", remarks: "Timed subtests fall under the real-time exception for assessments; extended time (1.5×) and breaks are assignable, and K–2 students never see a clock." },
+  { id: "2.2.2", name: "Pause, Stop, Hide", level: "A", status: "Supports", remarks: "No auto-moving content. Switch scanning starts only on request and pauses on demand." },
+  { id: "2.3.1", name: "Three Flashes or Below Threshold", level: "A", status: "Supports", remarks: "No flashing. Celebration animation is a single fade, and it's removed under reduced motion." },
+  { id: "2.4.1", name: "Bypass Blocks", level: "A", status: "Supports", remarks: "Skip link to main content, plus landmarks." },
+  { id: "2.4.2", name: "Page Titled", level: "A", status: "Supports", remarks: "Unique titles per route, including per student." },
+  { id: "2.4.3", name: "Focus Order", level: "A", status: "Supports", remarks: "Focus moves to the item heading on each new item. The Lens shows the full tab order." },
+  { id: "2.4.4", name: "Link Purpose (In Context)", level: "A", status: "Supports", remarks: "Links name their destination, e.g. “Change in testing setup”." },
+  { id: "2.4.5", name: "Multiple Ways", level: "AA", status: "Supports", remarks: "Primary navigation, in-page navigation on long pages, and roster search." },
+  { id: "2.4.6", name: "Headings and Labels", level: "AA", status: "Supports", remarks: "Descriptive headings, and checkbox labels that include the student's name (“Read aloud for Eli Goldberg”)." },
+  { id: "2.4.7", name: "Focus Visible", level: "AA", status: "Supports", remarks: "A single 3px ring with a white halo on every focusable element, including visually hidden radios (the ring is drawn on the card)." },
+  { id: "2.4.11", name: "Focus Not Obscured (Minimum)", level: "AA", status: "Supports", remarks: "scroll-padding keeps focused elements clear of the sticky header." },
+  { id: "2.5.1", name: "Pointer Gestures", level: "A", status: "Supports", remarks: "No multipoint or path gestures." },
+  { id: "2.5.2", name: "Pointer Cancellation", level: "A", status: "Supports", remarks: "Native buttons and inputs act on the up-event." },
+  { id: "2.5.3", name: "Label in Name", level: "A", status: "Supports", remarks: "Accessible names start with the visible label." },
+  { id: "2.5.4", name: "Motion Actuation", level: "A", status: "Not applicable", remarks: "No motion input." },
+  { id: "2.5.7", name: "Dragging Movements", level: "AA", status: "Not applicable", remarks: "No drag interactions. Future drag-and-drop item types will need a tap-to-place alternative." },
+  { id: "2.5.8", name: "Target Size (Minimum)", level: "AA", status: "Supports", remarks: "44px adult and 64px+ student targets, above the 24px minimum." },
+  { id: "3.1.1", name: "Language of Page", level: "A", status: "Supports", remarks: "lang set on html, and switched when the family report is shown in Spanish." },
+  { id: "3.1.2", name: "Language of Parts", level: "AA", status: "Supports", remarks: "Spanish prompts and the language toggle carry lang=\"es\"." },
+  { id: "3.2.1", name: "On Focus", level: "A", status: "Supports", remarks: "Focus never changes context." },
+  { id: "3.2.2", name: "On Input", level: "A", status: "Supports", remarks: "Choosing an answer doesn't advance the item. Advancing needs an explicit Next." },
+  { id: "3.2.3", name: "Consistent Navigation", level: "AA", status: "Supports", remarks: "The same header and nav on every page. The player toolbar is fixed in position." },
+  { id: "3.2.4", name: "Consistent Identification", level: "AA", status: "Supports", remarks: "Components come from the shared system, with the same names everywhere." },
+  { id: "3.2.6", name: "Consistent Help", level: "A", status: "Not yet verified", remarks: "No help mechanism yet. Planned in the same header position on every page." },
+  { id: "3.3.1", name: "Error Identification", level: "A", status: "Partially supports", remarks: "Few error states in this build. Date-range validation copy is designed but not built." },
+  { id: "3.3.2", name: "Labels or Instructions", level: "A", status: "Supports", remarks: "Every field has a visible label. Hints are tied to fields with aria-describedby." },
+  { id: "3.3.3", name: "Error Suggestion", level: "AA", status: "Not yet verified", remarks: "See 3.3.1." },
+  { id: "3.3.4", name: "Error Prevention (Legal, Financial, Data)", level: "AA", status: "Supports", remarks: "Publishing a window is reversible until the window opens, and the summary is reviewed before publishing." },
+  { id: "3.3.7", name: "Redundant Entry", level: "A", status: "Supports", remarks: "Accommodations are entered once and carried to the player and reports." },
+  { id: "3.3.8", name: "Accessible Authentication (Minimum)", level: "AA", status: "Not yet verified", remarks: "No sign-in in this build. K–2 sign-in is planned as QR badge or picture password; no memorized text." },
+  { id: "4.1.2", name: "Name, Role, Value", level: "A", status: "Supports", remarks: "Native elements first. Toggles use aria-pressed, disclosures aria-expanded, and the progress bar has a value and value text." },
+  { id: "4.1.3", name: "Status Messages", level: "AA", status: "Supports", remarks: "Roster counts, rule previews, practice feedback and assignment confirmations are announced via live regions." },
+];
