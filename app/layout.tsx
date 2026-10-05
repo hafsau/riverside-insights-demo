@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Atkinson_Hyperlegible_Next } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { LensController } from "@/components/lens";
 import { SiteHeader } from "@/components/site-header";
 import { StoreProvider } from "@/lib/store";
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
           <LensController />
         </StoreProvider>
+        <Analytics />
       </body>
     </html>
   );
