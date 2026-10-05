@@ -6,6 +6,10 @@
 @font-face { font-family: "Aptos"; font-weight: 600; font-display: swap; src: local("Aptos SemiBold"), local("Aptos-SemiBold"), url("https://riversideinsights.com/hubfs/Aptos-SemiBold.ttf") format("truetype"); }
 @font-face { font-family: "Aptos"; font-weight: 700; font-display: swap; src: local("Aptos Bold"), local("Aptos-Bold"), url("https://riversideinsights.com/hubfs/Aptos-Bold.ttf") format("truetype"); }
 @font-face { font-family: "Aptos"; font-weight: 800; font-display: swap; src: local("Aptos ExtraBold"), local("Aptos-ExtraBold"), url("https://riversideinsights.com/hubfs/Aptos-ExtraBold.ttf") format("truetype"); }
+/* Metric-matched fallback (Arial, or Liberation Sans/Arimo on Linux) so text
+   keeps its line breaks when Aptos arrives: no layout shift. Overrides
+   computed from Aptos's own metrics against Arial. */
+@font-face { font-family: "Aptos Fallback"; src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("Arimo"); size-adjust: 95.63%; ascent-override: 98.19%; descent-override: 29.46%; line-gap-override: 0%; }
 
 /*
  * Reach Foundations: tokens, from riversideinsights.com.
@@ -104,7 +108,7 @@
   --color-warn-soft: var(--warn-soft);
   --color-bad: var(--bad);
   --color-bad-soft: var(--bad-soft);
-  --font-sans: "Aptos", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-sans: "Aptos", "Aptos Fallback", sans-serif;
   --font-mono: "Aptos Mono", ui-monospace, "SF Mono", Consolas, monospace;
   --font-easy: var(--font-atkinson), "Aptos", sans-serif;
   --shadow-card: var(--shadow-card);

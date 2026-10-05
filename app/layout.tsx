@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Atkinson_Hyperlegible_Next } from "next/font/google";
 import { LensController } from "@/components/lens";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   title: { default: "Reach: an accessible-first assessment platform concept", template: "%s · Reach concept" },
   description:
     "An unofficial product design concept for Riverside Insights' Reach platform by Hafsa Usmani: a student test player, an educator score report and an admin setup, built on a design system with WCAG 2.2 AA from the first pixel.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL("https://riverside-insights-demo.vercel.app"),
 };
 
 export const viewport: Viewport = { themeColor: "#ffffff", colorScheme: "light" };
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
           <LensController />
         </StoreProvider>
+        <Analytics />
       </body>
     </html>
   );

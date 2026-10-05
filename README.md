@@ -1,6 +1,6 @@
 # Reach
 
-**▶ Live: _(add after deploy)_** · [![CI](https://github.com/hafsau/riverside-insights-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/hafsau/riverside-insights-demo/actions/workflows/ci.yml) · Case study at `/about` · Design system at `/system` · Draft ACR at `/accessibility`
+**▶ Live: [riverside-insights-demo.vercel.app](https://riverside-insights-demo.vercel.app)** · [![CI](https://github.com/hafsau/riverside-insights-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/hafsau/riverside-insights-demo/actions/workflows/ci.yml) · [Case study](https://riverside-insights-demo.vercel.app/about) · [Design system](https://riverside-insights-demo.vercel.app/system) · [Draft ACR](https://riverside-insights-demo.vercel.app/accessibility)
 
 **Accessible from the first pixel.** An unofficial product design concept for [Riverside Insights](https://riversideinsights.com)' Reach platform by [Hafsa Usmani](https://hafsausmani.com), built as my application for the **UX/UI Designer, Reach** role.
 
